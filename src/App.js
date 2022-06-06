@@ -10,12 +10,14 @@ const App = () => {
     <div className="app">
       <Router>
         <Header />
-        <Switch>
-          <Route exact path={"/"} component={Home} />
-          <Route exact path={"/home"} component={Home} />
-          <Route exact path={"/movie/:imdbID"} component={MovieDetail} />
-          <Route component={PageNotFound} />
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/home"} component={Home} />
+            <Route exact path={"/movie/:imdbID"} component={MovieDetail} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </div>
         <Footer />
       </Router>
     </div>
