@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./Header.scss";
 
-import { user, pnf } from "../../Images";
+import { user } from "../../Images";
 import {
   fetchAsyncMovies,
   fetchAsyncShows,
