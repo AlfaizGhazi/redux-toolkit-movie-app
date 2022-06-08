@@ -2,7 +2,6 @@ import * as React from "react";
 import "./MovieCard.scss";
 
 const MovieCard = ({ data }) => {
-  console.log(data);
   return (
     <div className="card-item">
       <div className="card-inner">
