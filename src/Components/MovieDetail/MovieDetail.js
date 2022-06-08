@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./MovieDetail.scss";
 import {
+  removeMovieOrShow,
   fetchAsyncMovieOrShow,
   getSelectedMovieOrShow,
 } from "../../Features/Movies/movieSlice";
@@ -14,12 +15,64 @@ const MovieDetail = () => {
 
   React.useEffect(() => {
     dispatch(fetchAsyncMovieOrShow(imdbID));
+    return () => {
+      dispatch(removeMovieOrShow());
+    };
   }, [dispatch, imdbID]);
   return (
     <div className="movie-section">
-      <div className="section-left">
-        <div className="movie-title">{selectedMovieOrShow.Title}</div>
-      </div>
+      {Object.keys(selectedMovieOrShow).length === 0 ? (
+        <div>...Loading</div>
+      ) : (
+        <>
+          <div className="section-left">
+            <div className="movie-title">{selectedMovieOrShow.Title}</div>
+            <div className="movie-rating">
+              <span>
+                IMDB Rating <i className="fa fa-star" /> :{" "}
+                {selectedMovieOrShow.imdbRating}
+              </span>
+              <span>
+                IMDB Votes <i className="fa fa-thumbs-up" /> :{" "}
+                {selectedMovieOrShow.imdbVotes}
+              </span>
+              <span>
+                Runtime <i className="fa fa-film" /> :{" "}
+                {selectedMovieOrShow.Runtime}
+              </span>
+              <span>
+                Year <i className="fa fa-calendar" /> :{" "}
+                {selectedMovieOrShow.Year}
+              </span>
+            </div>
+            <div className="movie-plot">{selectedMovieOrShow.Plot}</div>
+            <div className="movie-info">
+              <div>
+                <span>Director</span>
+                <span>{selectedMovieOrShow.Director}</span>
+              </div>
+              <div>
+                <span>Genres</span>
+                <span>{selectedMovieOrShow.Genre}</span>
+              </div>
+              <div>
+                <span>Languages</span>
+                <span>{selectedMovieOrShow.Language}</span>
+              </div>
+              <div>
+                <span>Awards</span>
+                <span>{selectedMovieOrShow.Awards}</span>
+              </div>
+            </div>
+          </div>
+          <div className="section-right">
+            <img
+              src={selectedMovieOrShow.Poster}
+              alt={selectedMovieOrShow.Title}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
