@@ -11,9 +11,12 @@ import {
 const Home = () => {
   const dispatch = useDispatch();
 
+  const moviesText = "Harry";
+  const showsText = "Friends";
+
   React.useEffect(() => {
-    dispatch(fetchAsyncMovies());
-    dispatch(fetchAsyncShows());
+    dispatch(fetchAsyncMovies(moviesText));
+    dispatch(fetchAsyncShows(showsText));
   }, [dispatch]);
 
   return (
